@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pki-2fa-microservice
+    ports:
+      - "8080:8080"
+    volumes:
+      - seed-data:/data
+      - cron-output:/cron
+    environment:
+      - TZ=UTC
+    restart: unless-stopped
+
+volumes:
+  seed-data:
+  cron-output:
